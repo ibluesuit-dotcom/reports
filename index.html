@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>리포트 | REDEV Partners</title>
+<meta name="description" content="REDEV Partners 리포트 아카이브">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #16181d;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #1f4fd8;
+    --card: #fafafa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --fg: #e8eaed;
+      --muted: #9aa1ad;
+      --line: #262a33;
+      --accent: #7aa2ff;
+      --card: #161a21;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+          "Pretendard", "Noto Sans KR", Segoe UI, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 32px; }
+  h1 { font-size: 1.65rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 0.92rem; margin: 0; }
+  ul.list { list-style: none; padding: 0; margin: 0; }
+  ul.list li { border-bottom: 1px solid var(--line); }
+  ul.list a {
+    display: flex; gap: 14px; align-items: baseline; justify-content: space-between;
+    padding: 16px 4px; text-decoration: none; color: inherit;
+  }
+  ul.list a:hover { background: var(--card); }
+  .title { font-weight: 600; }
+  .date { color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .empty {
+    border: 1px dashed var(--line); border-radius: 10px;
+    padding: 28px; text-align: center; color: var(--muted); font-size: 0.92rem;
+  }
+  footer { margin-top: 48px; color: var(--muted); font-size: 0.82rem; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>리포트</h1>
+    <p class="sub">REDEV Partners</p>
+  </header>
+
+  <ul class="list" id="list" hidden></ul>
+  <div class="empty" id="empty">아직 게시된 리포트가 없습니다.</div>
+
+  <footer>
+    <a href="https://www.redevpartners.net/">← redevpartners.net</a>
+  </footer>
+</div>
+
+<script>
+// manifest.json 형식:
+// [{ "title": "...", "date": "2026-08-05", "path": "reports/2026-08-05-digest-am.html" }, ...]
+fetch('manifest.json', { cache: 'no-store' })
+  .then(function (r) { return r.ok ? r.json() : []; })
+  .then(function (items) {
+    if (!Array.isArray(items) || items.length === 0) return;
+    items.sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); });
+    var ul = document.getElementById('list');
+    ul.innerHTML = items.map(function (it) {
+      var t = String(it.title || it.path || '').replace(/[<>&]/g, '');
+      var d = String(it.date || '').replace(/[<>&]/g, '');
+      var p = encodeURI(String(it.path || ''));
+      return '<li><a href="' + p + '"><span class="title">' + t +
+             '</span><span class="date">' + d + '</span></a></li>';
+    }).join('');
+    ul.hidden = false;
+    document.getElementById('empty').hidden = true;
+  })
+  .catch(function () {});
+</script>
+</body>
+</html>
