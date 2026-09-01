@@ -1,4 +1,111 @@
-<style>.acc{cursor:pointer;-webkit-tap-highlight-color:transparent}.acc-panel{max-height:0;overflow:hidden;transition:max-height .32s ease}.acc-chev{display:inline-block;transition:transform .28s ease;font-size:15px}.acc.open .acc-chev{transform:rotate(180deg)}.acc .acc-lbl-less{display:none}.acc.open .acc-lbl-less{display:inline}.acc.open .acc-lbl-more{display:none}.dangjamsa-video-button:hover{background:#D40000!important}</style><script>function tgAcc(e){var o=e.classList.contains("open");document.querySelectorAll(".acc.open").forEach(function(s){s.classList.remove("open");s.querySelector(".acc-panel").style.maxHeight=null});if(!o){e.classList.add("open");var p=e.querySelector(".acc-panel");p.style.maxHeight=p.scrollHeight+"px"}}</script><div style="width:394px;background:#F6F2EA;border-radius:36px;overflow:hidden;box-shadow:0 24px 60px rgba(30,26,18,.35);border:1px solid rgba(0,0,0,.08);word-break:keep-all">
+<title>근거 불릿 게이트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<style>
+:root{
+  --ground:#EDE9E0; --surface:#FFFDF8; --ink:#2A2621; --muted:#7A7266;
+  --rule:rgba(42,38,33,.13); --keep:#3F6B4F; --drop:#9B4A3A;
+  --chip:rgba(63,107,79,.10); --chipx:rgba(155,74,58,.10);
+  --paper:#DDD8CD;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#191714; --surface:#232019; --ink:#EDE8DE; --muted:#9A9184;
+    --rule:rgba(237,232,222,.14); --keep:#8FBF9E; --drop:#E0917F;
+    --chip:rgba(143,191,158,.12); --chipx:rgba(224,145,127,.12);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#191714; --surface:#232019; --ink:#EDE8DE; --muted:#9A9184;
+  --rule:rgba(237,232,222,.14); --keep:#8FBF9E; --drop:#E0917F;
+  --chip:rgba(143,191,158,.12); --chipx:rgba(224,145,127,.12);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:'Gothic A1','Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 22px 72px;
+  display:flex;flex-direction:column;gap:30px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--muted);
+  text-transform:uppercase;font-family:'IBM Plex Mono',ui-monospace,monospace}
+h1{font-size:34px;font-weight:800;letter-spacing:-.03em;margin:8px 0 0;text-wrap:balance}
+.lede{margin:10px 0 0;max-width:62ch;color:var(--muted);font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.stat{background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  padding:11px 15px;min-width:112px}
+.stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.stat span{font-size:12.5px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:minmax(0,438px) minmax(0,1fr);gap:30px;align-items:start}
+@media (max-width:940px){.cols{grid-template-columns:1fr}}
+.pane{background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.pane>h2{margin:0;padding:15px 20px;font-size:14px;font-weight:800;letter-spacing:-.01em;
+  border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;
+  align-items:baseline;gap:10px}
+.pane>h2 em{font-style:normal;font-size:12px;font-weight:600;color:var(--muted)}
+.device{background:var(--paper);padding:22px 0;display:flex;justify-content:center;
+  overflow-x:auto}
+.ledgers{padding:6px 20px 20px}
+.led{padding:17px 0;border-bottom:1px solid var(--rule)}
+.led:last-child{border-bottom:0}
+.led header{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px}
+.led h3{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em}
+.hl{margin:0;flex:1 1 260px;min-width:0;font-size:13px;color:var(--muted);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grp{margin-top:12px}
+.grp h4{margin:0 0 7px;font-size:11.5px;font-weight:700;letter-spacing:.09em;
+  color:var(--keep);text-transform:uppercase;
+  font-family:'IBM Plex Mono',ui-monospace,monospace}
+.grp.x h4{color:var(--drop)}
+.grp h4 b{font-variant-numeric:tabular-nums}
+.grp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.grp li{display:flex;gap:10px;align-items:baseline;padding:7px 11px;border-radius:4px;
+  background:var(--chip);font-size:14px}
+.grp li.d{background:var(--chipx)}
+.grp li .t{flex:1;min-width:0;word-break:break-word}
+.grp li.d .t{color:var(--muted);text-decoration:line-through;
+  text-decoration-color:var(--rule)}
+.src,.why{flex-shrink:0;font-size:11.5px;font-weight:600;white-space:nowrap;
+  font-family:'IBM Plex Mono',ui-monospace,monospace}
+.src{color:var(--keep)}
+.why{color:var(--drop);font-family:'Gothic A1',sans-serif;font-size:12px}
+.none{margin:12px 0 0;font-size:13.5px;color:var(--muted)}
+.why-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.why-list li{display:flex;gap:8px;align-items:baseline;background:var(--chipx);
+  border-radius:4px;padding:7px 12px;font-size:13px}
+.why-list b{font-variant-numeric:tabular-nums;color:var(--drop);
+  font-family:'IBM Plex Mono',ui-monospace,monospace}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:760px){.notes{grid-template-columns:1fr}}
+.note h3{margin:0 0 8px;font-size:13px;font-weight:800;letter-spacing:.04em}
+.note p,.note li{font-size:13.5px;color:var(--muted);margin:0}
+.note ul{margin:0;padding-left:17px;display:flex;flex-direction:column;gap:5px}
+footer{border-top:1px solid var(--rule);padding-top:18px;font-size:12.5px;color:var(--muted)}
+a{color:var(--keep)}
+:focus-visible{outline:2px solid var(--keep);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<style>.acc{cursor:pointer;-webkit-tap-highlight-color:transparent}.acc-panel{max-height:0;overflow:hidden;transition:max-height .32s ease}.acc-chev{display:inline-block;transition:transform .28s ease;font-size:15px}.acc.open .acc-chev{transform:rotate(180deg)}.acc .acc-lbl-less{display:none}.acc.open .acc-lbl-less{display:inline}.acc.open .acc-lbl-more{display:none}.dangjamsa-video-button:hover{background:#D40000!important}</style><script>function tgAcc(e){var o=e.classList.contains("open");document.querySelectorAll(".acc.open").forEach(function(s){s.classList.remove("open");s.querySelector(".acc-panel").style.maxHeight=null});if(!o){e.classList.add("open");var p=e.querySelector(".acc-panel");p.style.maxHeight=p.scrollHeight+"px"}}</script>
+<div class="wrap">
+<header>
+  <p class="eyebrow">격리 워크트리 · 발간 경로 아님</p>
+  <h1>근거 불릿 게이트</h1>
+  <p class="lede">종목 카드의 헤드라인 한 줄은 이미 정해져 있다. 이 층은 그 종목
+  <b>자신의 원고 문장</b>에만 번호(<code>코너#번호</code>)를 매겨 근거를 고르고, 통과하지 못한
+  후보는 고쳐 쓰지 않고 버린다. 독자는 왼쪽 카드를, 운영자는 오른쪽 원장을 본다.</p>
+  <div class="stats">
+    <div class="stat"><b>7</b><span>카드</span></div>
+    <div class="stat"><b>8</b><span>화면에 나간 근거</span></div>
+    <div class="stat"><b>10</b><span>게이트가 버린 후보</span></div>
+    <div class="stat"><b>5 · 50</b><span>카드당 상한 · 자수</span></div>
+  </div>
+</header>
+
+<section class="cols">
+  <div class="pane">
+    <h2>독자가 보는 화면<em>불릿 text만</em></h2>
+    <div class="device"><div style="width:394px;background:#F6F2EA;border-radius:36px;overflow:hidden;box-shadow:0 24px 60px rgba(30,26,18,.35);border:1px solid rgba(0,0,0,.08);word-break:keep-all">
   <div style="height:16px"></div>
   <div style="padding:10px 17px 30px">
 
@@ -16,172 +123,41 @@
 
     <footer style="margin-top:24px;font-size:13px;color:#8A857C;line-height:1.55;text-align:center">한국경제TV 당잠사(8/18(화)) 방송 요약<br>투자 권유 아님</footer>
   </div>
+</div></div>
+  </div>
+  <div class="pane">
+    <h2>운영자가 보는 원장<em>src · 폐기 사유까지</em></h2>
+    <div class="ledgers"><article class="led"><header><h3>마이크론</h3><p class="hl">러트닉 상무장관 &#x27;애플의 중국산 메모리 사용 불원&#x27; 발언 — 낸드 현물가 강세·앤트로픽 매출 14배 성장 등 AI 인프라 수요 기대까지 겹치며 메모리 섹터 전반 강세 견인.</p></header><p class="none">후보가 한 줄도 통과하지 못했다. 이 카드에는 펼치기를 만들지 않는다.</p></article><article class="led"><header><h3>메타</h3><p class="hl">29개 주정부 청소년 중독 소송 개시 — 배상 요구액 2,000억$, 추천 알고리즘 규제 시 광고 수익성 직격 우려.</p></header><div class="grp"><h4>화면에 나감 <b>1</b></h4><ul><li class="k"><span class="t">메타가 법정 공방에 돌입합니다.</span><span class="src">특징주#0</span></li></ul></div><div class="grp x"><h4>게이트가 버림 <b>5</b></h4><ul><li class="d"><span class="t">목표주가 9999달러로 상향</span><span class="why">숫자가 원문에 없음</span></li><li class="d"><span class="t">29개 주정부 청소년 중독 소송 개시 — 배상 요구액 2,000억$, 추</span><span class="why">숫자가 원문에 없음</span></li><li class="d"><span class="t">존재하지 않는 문장을 인용한다</span><span class="why">없는 문장을 인용</span></li><li class="d"><span class="t">가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가</span><span class="why">50자 초과</span></li><li class="d"><span class="t">옆 종목 문장을 끌어온다</span><span class="why">다른 종목의 문장</span></li></ul></div></article><article class="led"><header><h3>알파벳</h3><p class="hl">호주 채권시장 첫 진출, 약 50억 호주달러 발행 — 버크셔 지분 확대 공시에도 잉여현금흐름 둔화·금리 상승 부담.</p></header><div class="grp"><h4>화면에 나감 <b>1</b></h4><ul><li class="k"><span class="t">최장 20년 장기 채권까지 포함해 호주 달러를 대규모로 조달하는 건데요.</span><span class="src">특징주#7</span></li></ul></div></article><article class="led"><header><h3>애플</h3><p class="hl">로스차일드 투자의견 &#x27;중립→매수&#x27; 상향, 목표주가 260→400$ — 폴더블폰 진입 시 아이폰 ASP 11% 상승 전망.</p></header><div class="grp"><h4>화면에 나감 <b>1</b></h4><ul><li class="k"><span class="t">애플, 아메리칸 익스프레스에 이은 3대 보유 종목으로 올라섰습니다.</span><span class="src">특징주#10</span></li></ul></div><div class="grp x"><h4>게이트가 버림 <b>2</b></h4><ul><li class="d"><span class="t">이런 상황에서도 로스차일드는 애플에 대한 투자의견을 &#x27;중립&#x27;에서 &#x27;매수&#x27;로 상향했습니다.</span><span class="why">헤드라인 반복</span></li><li class="d"><span class="t">이에 따라 목표주가를 260에서 400달러로 올렸는데요.</span><span class="why">헤드라인 반복</span></li></ul></div></article><article class="led"><header><h3>엔비디아</h3><p class="hl">오픈AI 데이터센터 보증 규모 2,500억→1,200억$ 미만으로 축소, SB에너지에 15억$ 직접 투자 — 재무 부담 완화 기대.</p></header><p class="none">후보가 한 줄도 통과하지 못했다. 이 카드에는 펼치기를 만들지 않는다.</p></article><article class="led"><header><h3>샌디스크</h3><p class="hl">JP모간 분석 재개·목표주가 2,250$ 제시 — 낸드 현물가 예상 초과 상승·투자자의 날 낙관 전망 지속 호재.</p></header><div class="grp"><h4>화면에 나감 <b>3</b></h4><ul><li class="k"><span class="t">(여러 호재)가 한꺼번에 겹친 영향인데요.</span><span class="src">특징주#25</span></li><li class="k"><span class="t">(메모리 가격)도 &quot;강세&quot;를 보이고 있습니다.</span><span class="src">특징주#28</span></li><li class="k"><span class="t">이처럼 (여러 호재)가 겹치면서 메모리 관련주들의 상승세가 두드러졌습니다.</span><span class="src">특징주#33</span></li></ul></div></article><article class="led"><header><h3>워크데이</h3><p class="hl">도이치뱅크·BTIG 잇따라 투자의견 하향 — 인수설로 6월 저점 대비 76% 급등 후 밸류에이션 부담 지적.</p></header><div class="grp"><h4>화면에 나감 <b>2</b></h4><ul><li class="k"><span class="t">그중에서도 (워크데이)는 (도이치뱅크)가 투자의견을 ‘매수’에서 ‘보유’로 낮췄습니다.</span><span class="src">특징주#34</span></li><li class="k"><span class="t">주가가 이미 많이 오른 만큼, 현재는 (적정한 수준)까지 올라왔다고 판단했습니다.</span><span class="src">특징주#37</span></li></ul></div><div class="grp x"><h4>게이트가 버림 <b>3</b></h4><ul><li class="d"><span class="t">도이치뱅크는...</span><span class="why">헤드라인 반복</span></li><li class="d"><span class="t">여기에 BTIG도...</span><span class="why">헤드라인 반복</span></li><li class="d"><span class="t">이렇게 잇따른 (투자의견 하향)에 주가는 하락세를 보였습니다.</span><span class="why">헤드라인 반복</span></li></ul></div></article></div>
+  </div>
+</section>
+
+<section>
+  <h2 style="font-size:14px;font-weight:800;margin:0 0 11px">무엇이 왜 버려졌나</h2>
+  <ul class="why-list"><li><span>헤드라인 반복</span><b>5</b></li><li><span>숫자가 원문에 없음</span><b>2</b></li><li><span>없는 문장을 인용</span><b>1</b></li><li><span>50자 초과</span><b>1</b></li><li><span>다른 종목의 문장</span><b>1</b></li></ul>
+</section>
+
+<section class="notes">
+  <div class="note">
+    <h3>이 페이지가 증명하는 것</h3>
+    <ul>
+      <li>검증 게이트(<code>stock_bullets.py</code>)와 렌더(<code>caster_daily_render.py</code>)는
+          프로덕션 코드 그대로다.</li>
+      <li>원고는 실제 발간본(2026-08-18)에서 읽었고, 원본 파일은 수정하지 않았다.</li>
+      <li>카드 영역 어디에도 <code>코너#번호</code>나 폐기 사유가 새지 않는다.</li>
+      <li>근거가 0개인 카드(헤드라이너 ‘마이크론’)에는 펼치기가 없다.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <h3>증명하지 않는 것</h3>
+    <ul>
+      <li>생성부는 결정론 스텁이다 — 모델을 호출하지 않았다. 여기서 보는 것은
+          ‘모델이 무엇을 쓰는가’가 아니라 ‘게이트가 무엇을 거르는가’다.</li>
+      <li>헤드라인 반복 검사는 어휘 기반이라 어간조차 겹치지 않는 완전 의역은 못 잡는다.</li>
+      <li>정규 리포트 사이트·manifest·메일·발간 스케줄은 건드리지 않았다.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>격리 워크트리 <code>stock-brief-prompt-only</code> · 2026-09-01 · 미커밋 ·
+발간 산출물 아님</footer>
 </div>
-<!--LEDGER-->
-<pre>{
-  &quot;name&quot;: &quot;마이크론&quot;,
-  &quot;bullets&quot;: [],
-  &quot;bullets_dropped&quot;: []
-}
-
-{
-  &quot;name&quot;: &quot;메타&quot;,
-  &quot;bullets&quot;: [
-    {
-      &quot;text&quot;: &quot;메타가 법정 공방에 돌입합니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#0&quot;
-      ]
-    }
-  ],
-  &quot;bullets_dropped&quot;: [
-    {
-      &quot;text&quot;: &quot;목표주가 9999달러로 상향&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#0&quot;
-      ],
-      &quot;reason&quot;: &quot;number_not_in_source&quot;
-    },
-    {
-      &quot;text&quot;: &quot;29개 주정부 청소년 중독 소송 개시 — 배상 요구액 2,000억$, 추&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#0&quot;
-      ],
-      &quot;reason&quot;: &quot;number_not_in_source&quot;
-    },
-    {
-      &quot;text&quot;: &quot;존재하지 않는 문장을 인용한다&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#9999&quot;
-      ],
-      &quot;reason&quot;: &quot;src_unknown&quot;
-    },
-    {
-      &quot;text&quot;: &quot;가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#0&quot;
-      ],
-      &quot;reason&quot;: &quot;too_long&quot;
-    },
-    {
-      &quot;text&quot;: &quot;옆 종목 문장을 끌어온다&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#6&quot;
-      ],
-      &quot;reason&quot;: &quot;foreign_source&quot;
-    }
-  ]
-}
-
-{
-  &quot;name&quot;: &quot;알파벳&quot;,
-  &quot;bullets&quot;: [
-    {
-      &quot;text&quot;: &quot;최장 20년 장기 채권까지 포함해 호주 달러를 대규모로 조달하는 건데요.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#7&quot;
-      ]
-    }
-  ],
-  &quot;bullets_dropped&quot;: []
-}
-
-{
-  &quot;name&quot;: &quot;애플&quot;,
-  &quot;bullets&quot;: [
-    {
-      &quot;text&quot;: &quot;애플, 아메리칸 익스프레스에 이은 3대 보유 종목으로 올라섰습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#10&quot;
-      ]
-    }
-  ],
-  &quot;bullets_dropped&quot;: [
-    {
-      &quot;text&quot;: &quot;이런 상황에서도 로스차일드는 애플에 대한 투자의견을 &#x27;중립&#x27;에서 &#x27;매수&#x27;로 상향했습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#13&quot;
-      ],
-      &quot;reason&quot;: &quot;headline_duplicate&quot;
-    },
-    {
-      &quot;text&quot;: &quot;이에 따라 목표주가를 260에서 400달러로 올렸는데요.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#16&quot;
-      ],
-      &quot;reason&quot;: &quot;headline_duplicate&quot;
-    }
-  ]
-}
-
-{
-  &quot;name&quot;: &quot;엔비디아&quot;,
-  &quot;bullets&quot;: [],
-  &quot;bullets_dropped&quot;: []
-}
-
-{
-  &quot;name&quot;: &quot;샌디스크&quot;,
-  &quot;bullets&quot;: [
-    {
-      &quot;text&quot;: &quot;(여러 호재)가 한꺼번에 겹친 영향인데요.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#25&quot;
-      ]
-    },
-    {
-      &quot;text&quot;: &quot;(메모리 가격)도 \&quot;강세\&quot;를 보이고 있습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#28&quot;
-      ]
-    },
-    {
-      &quot;text&quot;: &quot;이처럼 (여러 호재)가 겹치면서 메모리 관련주들의 상승세가 두드러졌습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#33&quot;
-      ]
-    }
-  ],
-  &quot;bullets_dropped&quot;: []
-}
-
-{
-  &quot;name&quot;: &quot;워크데이&quot;,
-  &quot;bullets&quot;: [
-    {
-      &quot;text&quot;: &quot;그중에서도 (워크데이)는 (도이치뱅크)가 투자의견을 ‘매수’에서 ‘보유’로 낮췄습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#34&quot;
-      ]
-    },
-    {
-      &quot;text&quot;: &quot;주가가 이미 많이 오른 만큼, 현재는 (적정한 수준)까지 올라왔다고 판단했습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#37&quot;
-      ]
-    }
-  ],
-  &quot;bullets_dropped&quot;: [
-    {
-      &quot;text&quot;: &quot;도이치뱅크는...&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#36&quot;
-      ],
-      &quot;reason&quot;: &quot;headline_duplicate&quot;
-    },
-    {
-      &quot;text&quot;: &quot;여기에 BTIG도...&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#38&quot;
-      ],
-      &quot;reason&quot;: &quot;headline_duplicate&quot;
-    },
-    {
-      &quot;text&quot;: &quot;이렇게 잇따른 (투자의견 하향)에 주가는 하락세를 보였습니다.&quot;,
-      &quot;src&quot;: [
-        &quot;특징주#40&quot;
-      ],
-      &quot;reason&quot;: &quot;headline_duplicate&quot;
-    }
-  ]
-}</pre>
